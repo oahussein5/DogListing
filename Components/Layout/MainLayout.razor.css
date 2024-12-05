@@ -2,16 +2,36 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    background-color: #f9f9f9; /* Light background for contrast */
 }
 
+/* Main content area flex behavior */
 main {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
+/* Sidebar styling */
 .sidebar {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    color: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+    transition: transform 0.3s ease;
 }
 
+    .sidebar a {
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: none;
+    }
+
+        .sidebar a:hover {
+            color: #fff;
+        }
+
+/* Top row header */
 .top-row {
     background-color: #f7f7f7;
     border-bottom: 1px solid #d6d5d5;
@@ -19,31 +39,40 @@ main {
     height: 3.5rem;
     display: flex;
     align-items: center;
+    padding: 0 1rem;
+    z-index: 1000;
+    position: sticky;
+    top: 0;
 }
 
     .top-row ::deep a, .top-row ::deep .btn-link {
         white-space: nowrap;
         margin-left: 1.5rem;
+        color: #0078d7;
+        font-weight: 500;
         text-decoration: none;
+        transition: color 0.3s ease;
     }
 
-    .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
-        text-decoration: underline;
-    }
+        .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
+            text-decoration: underline;
+            color: #005bb5;
+        }
 
-    .top-row ::deep a:first-child {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+        .top-row ::deep a:first-child {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
+/* Responsive layout adjustments */
 @media (max-width: 640.98px) {
     .top-row {
         justify-content: space-between;
     }
 
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        margin-left: 0;
-    }
+        .top-row ::deep a, .top-row ::deep .btn-link {
+            margin-left: 0;
+        }
 }
 
 @media (min-width: 641px) {
@@ -58,12 +87,6 @@ main {
         top: 0;
     }
 
-    .top-row {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-    }
-
     .top-row.auth ::deep a:first-child {
         flex: 1;
         text-align: right;
@@ -76,21 +99,31 @@ main {
     }
 }
 
+/* Blazor error UI */
 #blazor-error-ui {
-    background: lightyellow;
+    background: #ffe5b4;
+    color: #856404;
     bottom: 0;
     box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
     display: none;
     left: 0;
-    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    padding: 0.75rem 1.5rem;
     position: fixed;
     width: 100%;
     z-index: 1000;
+    font-size: 0.9rem;
 }
 
     #blazor-error-ui .dismiss {
         cursor: pointer;
         position: absolute;
-        right: 0.75rem;
+        right: 1rem;
         top: 0.5rem;
+        font-weight: bold;
     }
+
+/* Add hover and focus transitions */
+.sidebar a,
+.top-row ::deep a {
+    transition: color 0.2s, background-color 0.2s;
+}
